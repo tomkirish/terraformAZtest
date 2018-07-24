@@ -8,7 +8,3 @@ resource "azurerm_resource_group" "network" {
 }
 
 #New Line
-
-
-#Final New Line
-

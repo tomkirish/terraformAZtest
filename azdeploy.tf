@@ -7,17 +7,17 @@ provider "azurerm" {
 }
 
 # Create a resource group
-resource "RG_Statera_Test" "network" {
-  name     = "production"
+resource "azurerm_resource_group" "network" {
+  name     = "RG_Statera"
   location = "West US"
 }
 
 # Create a virtual network within the resource group
-resource "Statera_virtual_network" "network" {
+resource "azurerm_virtual_network" "network" {
   name                = "Statera-production-network"
   address_space       = ["10.0.0.0/16"]
-  location            = "${RG_Statera_Test.network.location}"
-  resource_group_name = "${RG_Statera_Test.network.name}"
+  location            = "${azurerm_resource_group.network.location}"
+  resource_group_name = "${azurerm_resource_group.network.name}"
 
   subnet {
     name           = "Statera-subnet1"

@@ -1,3 +1,4 @@
+# Main tf configuration file. Variable file name = azpocvar.tf.
 # Configure the Azure Provider
 provider "azurerm" {
   Subscription_id = "9e"

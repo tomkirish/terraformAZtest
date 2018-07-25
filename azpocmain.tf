@@ -1,16 +1,16 @@
 # Main tf configuration file. Variable file name = azpocvar.tf.
 # Configure the Azure Provider
 provider "azurerm" {
-  Subscription_id = "9e"
-  Client_id       = "az"
-  Client_Secret   = "14"
-  Tenant_id       = "23"
+  Subscription_id = "${var.Subscription_id}"
+  Client_id       = "${var.Client_id}"
+  Client_Secret   = "${var.Client_Secret}"
+  Tenant_id       = "${var.Tenant_id}"
 }
 
 # Create a resource group
 resource "azurerm_resource_group" "network" {
-  name     = "RG_POCClient"
-  location = "West US"
+  name     = "${var.resource_group_name}"
+  location = "${var.region}"
 }
 
 # Create a virtual network within the resource group

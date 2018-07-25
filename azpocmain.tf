@@ -1,6 +1,7 @@
 # Main tf configuration file. Variable file name = azpocvar.tf.
-# Configure the Azure Provider
-provider "azurerm" {
+
+# Configure the Azure Provider - For use with Service Principal authentication only.
+touch azpocvar.tf provider "azurerm" {
   Subscription_id = "${var.Subscription_id}"
   Client_id       = "${var.Client_id}"
   Client_Secret   = "${var.Client_Secret}"
@@ -17,8 +18,8 @@ resource "azurerm_resource_group" "network" {
 resource "azurerm_virtual_network" "network" {
   name                = "Client-POC-network"
   address_space       = ["10.0.0.0/16"]
-  location            = "${azurerm_resource_group.network.location}"
-  resource_group_name = "${azurerm_resource_group.network.name}"
+  location            = "${var.region}"
+  resource_group_name = "${var.resource_group_name}"
 
   subnet {
     name           = "SNWEB-POCClient"

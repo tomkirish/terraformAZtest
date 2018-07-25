@@ -1,20 +1,23 @@
 # Configure variables for azpocmain.tf
 
 variable "Client" {
-  description = "Please provide the name of the client."
-  default = "STATPOC"
+  description = "Please provide the name of the client. Replace STATPOC with client name."
+  default     = "STATPOC"
 }
 
-# Configure the Azure Provider
+# Configure the Azure Provider - For use with Service Principal authentication only.
 variable "Subscription_id" {
   description = "This is the Azure subscription to use. This is mapped to Azure appid."
 }
+
 variable "Client_id" {
   description = "The client id. This is mapped to the Azure name field which includes the http address."
 }
+
 variable "Client_Secret" {
   description = "The password for the account being used. This is mapped to the Azure password field."
 }
+
 variable "Tenant_id" {
   description = "The tenant id. This is mapped to the Azure tenant field"
 }
@@ -22,16 +25,12 @@ variable "Tenant_id" {
 # Create a resource group
 variable "resource_group_name" {
   description = "The name of the resource group"
-  default = "${join("RG_POC", var.Client)}"
-}
-variable "region" {
-  description = "Please provide the name of the region."
-  default = "West US"
+  default     = "${join("RG_POC", var.Client)}"
 }
 
-resource "azurerm_resource_group" "network" {
-  name     = "RG_POCClient"
-  location = "West US"
+variable "region" {
+  description = "Please provide the name of the region."
+  default     = "West US"
 }
 
 # Create a virtual network within the resource group
